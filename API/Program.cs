@@ -1,7 +1,10 @@
 using System.Text.Json.Serialization;
 using Domain.DatabaseContext;
 using Domain.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
