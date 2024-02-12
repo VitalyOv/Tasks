@@ -10,7 +10,7 @@ services.AddControllers().AddJsonOptions(x =>
 {
     x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
-services.AddDbContext<DatabaseContext>(
+services.AddDbContextPool<DatabaseContext>(
     contextBuilder => contextBuilder.UseNpgsql(builder.Configuration.GetConnectionString("TasksDB")));
 
 services.AddScoped<ITasksService, TasksService>();
@@ -19,11 +19,7 @@ services.AddHostedService<TaskWorkerService>();
 var app = builder.Build();
 
 app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 app.UseCors(configurePolicy =>
 {
     configurePolicy
